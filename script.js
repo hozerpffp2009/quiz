@@ -3,6 +3,9 @@ const answerContainer = document.querySelector(".answer-track");
 const options=document.querySelector(".options").children;
 const questionNumberSpan = document.querySelector(".question-num-value");
 const totalQuestionSpan = document.querySelector(".total-question");
+const correctAnswers=document.querySelector(".correct-answers");
+const totalQuest=document.querySelector(".total-question2");
+const percent=document.querySelector(".percent");
 const question = document.querySelector(".question");
 const op1 = document.querySelector(".option1"); 
 const op2 = document.querySelector(".option2"); 
@@ -11,6 +14,8 @@ const op4 = document.querySelector(".option4");
 let questionIndex;
 let index=0;
 let myArray=[];
+let myAr=[];
+let score=0;
 
 // questions and options with answer
 const questions=[
@@ -55,8 +60,10 @@ totalQuestionSpan.innerHTML=questions.length
  function check(element) {
     if (element.id == questions[questionIndex].answer) {
         element.classList.add("correct")
-       console.log('correct');
+        score++;
        updateAnswer("correct");
+       console.log('correct');
+       console.log("score:" + score)
     } else {
         element.classList.add("wrong")
         updateAnswer("wrong");
@@ -80,12 +87,12 @@ function enableOptions() {
 }
 
 function validate() {
-    // if(!options[0].classList.contains("disables")) {
-    //     alert("Select a option!!")
-    // } else {
+    if(!options[0].classList.contains("disabled")) {
+        alert("Select a option!!")
+    } else {
         enableOptions();
         randomQuestion();
-    
+    }
 }
 
 function next() {
@@ -94,10 +101,35 @@ function next() {
 
  function randomQuestion() {
      let randomNumber = Math.floor(Math.random()* questions.length);
-     questionIndex = randomNumber;
-     myArray.push(questionIndex);
-     console.log("myArray" + myArray)
-     load();
+     let duplicate=0
+     if (index==questions.length) {
+         quizOver();
+     } else if (myArray.length>0) {
+        for (let i=0; i < myArray.length; i++) {
+            if(myArray[i] == randomNumber) {
+                duplicate = 1;
+                break;
+            }
+        }
+
+        if (duplicate==1) {
+            randomQuestion();
+        } else {
+            questionIndex=randomNumber;
+            load();
+        }
+     }
+     if (myArray.length==0) {
+        questionIndex = randomNumber;
+        load();
+        myAr.push(questionIndex);
+        
+        myArray.push(randomNumber);
+        console.log("myAr:" + myAr);
+     }
+     
+    
+     
  }
 
  function answerTrack() {
@@ -109,6 +141,10 @@ function next() {
 
  function updateAnswer (className) {
      answerContainer.children[index-1].classList.add(className);
+ }
+
+ function quizOver() {
+
  }
 
      window.onload = function() {
