@@ -1,82 +1,89 @@
 body {
-    background-color: aqua;
+  margin: 0 auto;
+  background-color: aliceblue;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
-#submit {
-    font-family: sans-serif;
-    font-size: 20px;
-    background-color: #297;
-    color: #fff;
-    border: 0px;
-    border-radius: 3px;
-    padding: 20px;
-    cursor: pointer;
-    margin-bottom: 20px;
 
-}
-.card {
-    width: 200px;
-    height: 150px;
-    margin: 0 auto;
-    background-color: lightblue;
-    padding: 10px 20px 20px 20px;
-    border-radius: 30px;
-    border: 5px solid darkgray
-}
-.btn {
-    border: 2px solid black;
-    background-color: purple;
-    border-radius: 25px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px 0px;
-    color: whitesmoke(0, 0% 100%);
-    display: inline-block;
-    font-size: 15px;
-    font-weight: bolder;
-    line-height: 22px;
-    margin: 30px 30px 30px 40px;
-    padding: 14px 20px;
-    text-align: center;
-    cursor: pointer;
+* {
+  box-sizing: border-box;
 }
 
 .container {
-    width: 500px;
-    height: 350px;
-    margin: 0 auto;
-    background-color: lightblue;
-    padding: 10px 50px 50px 50px;
-    border-radius: 50px;
-    border: 5px solid darkgray;
+  max-width: 600px;
+  min-height: 500px;
+  background-color: lightblue;
+  margin: 30px auto;
+  border-radius: 10px;
+  padding: 30px;
 }
 
+.qNumber,
+.question,
+.options,
+.buttons,
+.answer-track {
 
 
-.buttons {
-    margin-top: 30px;
 }
 
-
-
-#btn1:hover, #btn2:hover, #btn3:hover, #btn4:hover, #btn5:hover {
-    cursor: pointer;
-    background-color: darkblue;
+.qNumber h3 {
+  color: red;
+  border-bottom: 1px solid #ccc;
+  margin: 0;
+  padding-bottom: 10px;
 }
 
+.question {
+  font-size: 25px;
+  color: red;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+  
+.options div {
+  background-color: rgb(224, 243, 227);
+  font-size: 15px;
+  color: red;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  padding: 15px ;
+  cursor: pointer;
 
-@media (max-width: 690px) {
-    .btn {
-      font-size: 1rem;
-      margin: 16px 0px 0px 0px;
-      padding: 10px 15px;
-    }
-  
-    #password {
-      font-size: 1rem;
-    }
-  }
-  
-  @media (max-width: 500px) {
-    .btn {
-      font-size: 0.8rem;
-    }
-  }
-  
+}
+
+.options div.disabled {
+  pointer-events: none;
+}
+
+.button .btnNxt {
+  padding: 20px 40px;
+  background-color: aliceblue;
+  font-size: 20px;
+  color: red;
+  border: none;
+  cursor: pointer;
+  margin: 15px;
+}
+
+.answer-track {
+  border-top: 2px solid #ccc;
+  padding-top: 15px;
+}
+
+.answer-track div {
+  height: 40px;
+  width: 40px;
+  background-color: blue;
+  border-radius: 50%; 
+  margin: 5px;
+  display: inline-block;
+}
+
+.answer-track div.correct {
+  background-color: green;
+}
+
+.answer-track div.wrong {
+  background-color: red;
+}
+ 

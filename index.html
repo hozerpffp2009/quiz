@@ -1,36 +1,42 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title> Code quiz</title>
-        <link rel="stylesheet" href="style.css" type="text/css">
-    </head>
-    <body>       
-        <p><span id="myTimer" style="color: blue; font-size: 50px; font-weight: bold;">00:01:00</span></p>
-        
-        <div class="card">
-            <div class="card-body">
-                <button id="start" class="btn">Click to start quiz!</button>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>code quiz</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <div class="container">
 
-            </div>
-
-        </div>
-      
-      <div class="container">
-        
-
-      </div>
-
-      <div class="score">
-        <button id="submit">Get results</button>
-
+    <div class="qNumber">
+      <h3>Question <span class="question-num-value"></span> of <span class="total-question"></span></h3>
     </div>
-    
-        <div id="results">
 
-        </div>
-        <script src="script.js"></script>
-    </body>
+    <div class="question">
+    
+    </div>
+
+    <div class="options">
+      <div id="1" class="option1" onclick="check(this)"></div>
+      <div id="2" class="option2" onclick="check(this)"></div>
+      <div id="3" class="option3" onclick="check(this)"></div>
+      <div id="4" class="option4" onclick="check(this)"></div>
+    </div>
+
+    <div class="button">
+      <button type="button" class="btnNxt" onclick="next()">Next</button>
+    </div>
+
+    <div class="answer-track">
+      <div class=""></div>
+      <div class=""></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
 </html>
