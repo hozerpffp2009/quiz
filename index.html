@@ -7,10 +7,19 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <p><span id="myTimer" style="color: blue; font-size: 50px; font-weight: bold;">00:01:00</span></p>
   
+  <div class="card">
+    <div class="card-body">
+        <button id="start" class="btn">Click to start quiz!</button>
+
+    </div>
+
+</div>
+
   <div class="container">
 
-    <div class="qNumber">
+   <div class="qNumber">
       <h3>Question <span class="question-num-value"></span> of <span class="total-question"></span></h3>
     </div>
 
@@ -37,11 +46,17 @@
   <div class="quiz-over">
     <div class="box">
     <h1>Good try! <br>
-      You got <span class="correct-answers">3</span> out of <span class="total-questions2">10</span> answers right! <br>
-      <span class="percent">30%</span> Average!
+      You got <span class="correct-answers"></span> out of <span class="total-questions2"></span> answers right! <br>
+      <span class="percent"></span> Average!
     </h1>
     <button type="button" onclick="tryAgain()">TryAgain</button>
     </div>
+  </div>
+
+  <div class="saving">
+    <h2>Hall of fame</h2>
+    <p><strong>Full name : </strong> <span id="user-full-name"></span></p>
+    <p><strong>Total score : </strong> <span id="user-total-score"></span> <span class="percent"></span></p>
   </div>
   <script src="script.js"></script>
 </body>

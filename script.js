@@ -4,7 +4,7 @@ const options=document.querySelector(".options").children;
 const questionNumberSpan = document.querySelector(".question-num-value");
 const totalQuestionSpan = document.querySelector(".total-question");
 const correctAnswers=document.querySelector(".correct-answers");
-const totalQuest=document.querySelector(".total-question2");
+const totalQuest=document.querySelector(".total-questions2");
 const percent=document.querySelector(".percent");
 const question = document.querySelector(".question");
 const op1 = document.querySelector(".option1"); 
@@ -16,7 +16,61 @@ let index=0;
 let myArray=[];
 let myAr=[];
 let score=0;
+var userFullName = document.querySelector("#user-full-name");
+var recordScore = document.querySelector("#user-total-score");
+// start timer and quiz
+var startBtn = document.querySelector("#start");
+startBtn.addEventListener("click", function() {
+    Question();
+    start_timer();
+    randomQuestion();
+   
+});
+//ask name for record keeping
+function Question() {
+    var name = prompt("Type in first and last name : ")
+    if (name) {
+        userFullName.textContent = name;
+        // recordScore.textContent = percent;
+        localStorage.setItem("name", name);
+        // localStorage.setItem("percent", percent);   
+        renderLastRegistered();
+       
+    }    
+} 
 
+function renderLastRegistered() {
+    var name = localStorage.getItem("name");
+    // var percent = localStorage.getItem("percent");
+}
+
+
+// add in timer to begin countdown
+function start_timer() {
+    var timer = document.getElementById("myTimer").innerHTML;
+    var arr = timer.split(":");
+    var hour = arr[0];
+    var min = arr[1];
+    var sec = arr[2];
+    if (sec == 0) {
+        if (min == 0) {
+            if (hour == 0) {
+                alert("Times Up");
+                window.location.reload();
+
+            }
+            hour--;
+            min = 60;
+            if (hour < 10) hour = "0" + hour;
+        }
+        min--;
+        if (min < 10) min = "0" + min;
+        sec = c = 59;
+    } else sec--;
+    if (sec < 10) sec = "0" + sec;
+    document.getElementById("myTimer").innerHTML = hour + ":" + min + ":" + sec;
+    setTimeout(start_timer, 1000);
+}
 // questions and options with answer
 const questions=[
     {
@@ -57,6 +111,7 @@ totalQuestionSpan.innerHTML=questions.length
     index++;
 
  }
+ //check to make sure answers are right or wrong
  function check(element) {
     if (element.id == questions[questionIndex].answer) {
         element.classList.add("correct")
@@ -71,6 +126,7 @@ totalQuestionSpan.innerHTML=questions.length
     }
    disabledOptions()
 }
+// dont allow for user to select other options
 function disabledOptions() {
     for (let i=0; i<options.length; i++) {
         options[i].classList.add("disabled");
@@ -98,7 +154,7 @@ function validate() {
 function next() {
     validate();
 }
-
+// allows questions to be randomized
  function randomQuestion() {
      let randomNumber = Math.floor(Math.random()* questions.length);
      let duplicate=0
@@ -131,7 +187,7 @@ function next() {
     
      
  }
-
+// keep track of how many right and wrong
  function answerTrack() {
     for (let i=0; i<questions.length; i++) {
         const div = document.createElement("div")
@@ -142,13 +198,20 @@ function next() {
  function updateAnswer (className) {
      answerContainer.children[index-1].classList.add(className);
  }
-
+// when the test is over, show score to user
  function quizOver() {
+    document.querySelector(".quiz-over").classList.add("show");
+    correctAnswers.innerHTML=score;
+    totalQuest.innerHTML=questions.length; 
+    percent.innerHTML=(score/questions.length) * 100 + '%';
+ }
 
+ function tryAgain () {
+     window.location.reload();
  }
 
      window.onload = function() {
-     randomQuestion();
+     
      answerTrack();
 
  }
